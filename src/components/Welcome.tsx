@@ -5,17 +5,22 @@ import { Carousel } from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 const Welcome = () => {
   return (
-      <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
-                <div className='h-70'>
-                    <img src={banner1}  className='h-70'/>
+    <div className=' px-11 '>   
+        <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
+              
+                <div className=' w-378 object-contain'>
+                    <img src={banner1}  className='h-100'/>
                 </div>
-                <div  className='h-70'>
-                    <img src={banner2}  className='h-70' />
+                <div  className=' w-378 object-contain'>
+                    <img src={banner2}  className='h-100' />
                 </div>
-                <div  className='h-70' >
-                    <img src={banner3}  className='h-70' />
+                <div  className='w-378 object-contain' >
+                    <img src={banner3}  className='h-100' />
                 </div>
-            </Carousel>  )
+            </Carousel> 
+            </div>
+   )
 }
 
 export default Welcome
+
