@@ -1,19 +1,23 @@
-import  { useState } from 'react'
-import Navbar from './components/Navbar'
-import { Outlet } from '@tanstack/react-router'
+import { Outlet } from "@tanstack/react-router";
+import { useState } from "react";
+import Navbar from "./components/Navbar";
+import MenuBar from "./components/MenuBar";
+import Welcome from "./components/Welcome";
+import Home from "./components/Home";
 
-function layout() {
-    const [search, setSearch] = useState("")
-      const [menu, setMenu] = useState<Boolean>(false)
+const Layout = () => {
+  const [search, setSearch] = useState("");
+  const [menu, setMenu] = useState("");
+
   return (
     <>
-    <Navbar setSearch={setSearch} setMenu={setMenu} search={''}/>
-
-    <Outlet/>
-    
+      <Navbar search={search} setSearch={setSearch} setMenu={setMenu} />
+      <MenuBar menu={menu} setMenu={setMenu} />
+      <Welcome />
+      <Home search={search} menu={menu} />
+      <Outlet />
     </>
-  )
-}
+  );
+};
 
-export default layout
-
+export default Layout;

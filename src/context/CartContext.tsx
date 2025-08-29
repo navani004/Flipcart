@@ -1,29 +1,7 @@
-import { createContext, useContext, useState,type ReactNode } from "react"
-interface Product {
-  id: number
-  title: string
-  price: number
-  description: string
-  category: string
-  image: string
-  rating: {
-    rate: number
-    count: number
-  }
-}
 
-export interface CartItem {
-  product: Product
-  quantity: number
-}
-
-interface CartContextType {
-  cart: CartItem[]
-  addToCart: (product: Product) => void
-  increaseQty: (id: number) => void
-  decreaseQty: (id: number) => void
-  getTotalPrice: () => number
-}
+import { createContext, useContext, useState, type ReactNode } from "react"
+import type { Product } from "../type/product"
+import type { CartItem, CartContextType } from "../type/cart"
 
 const CartContext = createContext<CartContextType | null>(null)
 

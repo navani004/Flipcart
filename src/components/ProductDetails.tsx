@@ -21,7 +21,7 @@ interface Product {
 
 const ProductDetails = () => {
   const navigate = useNavigate()
-  const { id } = useParams({ from: "/details/$id" })
+  const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null)
   const { addToCart } = useCart()
 
@@ -33,6 +33,7 @@ const ProductDetails = () => {
     }
     fetchProduct()
   }, [id])
+
 
   if (!product) return <p className="text-center mt-10 text-lg">Loading...</p>
 
@@ -99,3 +100,4 @@ const ProductDetails = () => {
 }
 
 export default ProductDetails
+

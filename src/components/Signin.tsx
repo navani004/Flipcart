@@ -32,7 +32,7 @@ const Signin = () => {
 
     const data = await res.json();
     if (data.success) {
-      alert("✅ OTP Verified");
+      alert(" OTP Verified");
 
       localStorage.setItem("signedIn", "true");
 
@@ -40,7 +40,7 @@ const Signin = () => {
 
       navigate({ to: "/" });
     } else {
-      alert("❌ Invalid OTP");
+      alert(" Invalid OTP");
     }
   };
 
