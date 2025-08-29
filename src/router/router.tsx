@@ -131,7 +131,7 @@ const homeRoute = createRoute({
   component: Home,
 });
 
-const detailsRoute = createRoute({
+export const detailsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/details/$id",
   component: ProductDetails,
