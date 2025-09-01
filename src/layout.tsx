@@ -1,20 +1,31 @@
-import { Outlet } from "@tanstack/react-router";
+import { Outlet, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import MenuBar from "./components/MenuBar";
-import Welcome from "./components/Welcome";
-import Home from "./components/Home";
+
+
 
 const Layout = () => {
   const [search, setSearch] = useState("");
   const [menu, setMenu] = useState("");
 
+  const routerState = useRouterState();
+  const path = routerState.location.pathname;
+
+  const hideNavbar = path.startsWith("/signin");
+
+  const hideMenuBar =
+    path.startsWith("/signin") ||
+    path.startsWith("/cart") ||
+    path.startsWith("/details");
   return (
     <>
-      <Navbar search={search} setSearch={setSearch} setMenu={setMenu} />
-      <MenuBar menu={menu} setMenu={setMenu} />
-      <Welcome />
-      <Home search={search} menu={menu} />
+      {!hideNavbar && (
+        <Navbar search={search} setSearch={setSearch} setMenu={setMenu} />
+      )}
+       {!hideMenuBar && <MenuBar menu={menu} setMenu={setMenu} />}
+
+
       <Outlet />
     </>
   );
