@@ -1,6 +1,6 @@
 
 
-import { createRouter, createRoute, createRootRoute } from "@tanstack/react-router";
+import { createRouter, createRoute, createRootRoute, Outlet } from "@tanstack/react-router";
 import Layout from "../layout";
 import Home from "../components/Home";
 import ProductDetails from "../components/ProductDetails";
@@ -14,7 +14,7 @@ const rootRoute = createRootRoute({
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
- component: () => <Home search={""} menu={""} />, 
+ component: Outlet, 
 });
 
 export const detailsRoute = createRoute({
