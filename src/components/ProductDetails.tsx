@@ -13,7 +13,7 @@ const ProductDetails = () => {
   const id = window.location.pathname.split("/details/")[1];
 
   const [product, setProduct] = useState<Product | null>(null);
-  const { addToCart } = useCart();
+  const { cart,addToCart } = useCart();
 
 
    useEffect(() => {
@@ -66,14 +66,19 @@ const ProductDetails = () => {
 
           <div className="flex gap-4 mt-8">
             <button
-              className="bg-green-700 hover:bg-yellow-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition-transform hover:scale-105 cursor-pointer"
-              onClick={() => {
-                addToCart(product);
-                toast.success("✅ Added to Cart!");
-              }}
-            >
-              🛒 Add to Cart
-            </button>
+  className="bg-green-700 hover:bg-yellow-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition-transform hover:scale-105 cursor-pointer"
+  onClick={() => {
+    const exists = cart.some(item => item.product.id === product.id);
+    if (exists) {
+      toast.info("Item already in cart!");
+    } else {
+      addToCart(product);
+      toast.success("Added to Cart!");
+    }
+  }}
+>
+  🛒 Add to Cart
+</button>
 
             <button
               className=" cursor-pointer bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-6 py-3 rounded-xl shadow transition-transform hover:scale-105"

@@ -45,16 +45,45 @@ const Navbar = ({ search, setSearch, setMenu }: NavbarProps) => {
       <h1 className="text-2xl font-bold text-blue-600 cursor-pointer" onClick={handleFlipkartClick}>
         Flipkart
       </h1>
-      <div className="flex items-center border rounded-md px-2 w-96">
-        <input
-          type="text"
-          placeholder="Search for products"
-          className="flex-1 outline-none px-2 py-1"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <img src={lens} className="w-5 h-5" />
-      </div>
+    
+
+
+<div
+  className="
+    flex
+    items-center
+    w-96
+    px-3
+    py-2
+    rounded-full
+    bg-gray-100
+    hover:bg-gray-200
+    focus-within:ring-2
+    focus-within:ring-blue-400
+    transition
+    duration-300
+  "
+>
+  <img src={lens} className="w-5 h-5 text-gray-500 mr-2" alt="search" />
+
+  <input
+    type="text"
+    placeholder="Search for products"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="
+      flex-1
+      bg-transparent
+      outline-none
+      text-gray-800
+      placeholder-gray-500
+    "
+  />
+</div>
+
+
+
+
       <div className="flex items-center space-x-10">
         <div className="flex items-center cursor-pointer">
           <img src={seller} className="w-6 h-6" />
