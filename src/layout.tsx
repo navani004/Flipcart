@@ -25,7 +25,6 @@ const Layout = () => {
       {!hideMenuBar && <MenuBar menu={menu} setMenu={setMenu} />}
 
       {path === "/" ? (
-        // ✅ Now it gets live values
         <Home search={search} menu={menu} />
       ) : (
         <Outlet />

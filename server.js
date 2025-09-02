@@ -1,19 +1,56 @@
 import express from "express";
-import bodyParser from "body-parser";
 import cors from "cors";
+import Stripe from "stripe";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json()); 
 
-// Temporary store OTPs in memory
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: "2022-11-15",
+});
+
+app.post("/create-checkout-session", async (req, res) => {
+  try {
+    const { cart } = req.body;
+
+    if (!cart || !Array.isArray(cart) || cart.length === 0) {
+      return res.status(400).json({ error: "Cart is empty or invalid" });
+    }
+
+    const line_items = cart.map((item) => ({
+      price_data: {
+        currency: "inr",
+        product_data: {
+          name: item.product.title,
+        },
+        unit_amount: Math.round(item.product.price * 100), // convert ₹ to paise
+      },
+      quantity: item.quantity,
+    }));
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "payment",
+      line_items,
+      success_url: "http://localhost:5173/success",
+      cancel_url: "http://localhost:5173/cart",
+    });
+
+    return res.json({ id: session.id });
+  } catch (err) {
+    console.error("Stripe session error:", err);
+    return res.status(500).json({ error: "Stripe checkout session creation failed" });
+  }
+});
+
 const otpStore = {};
-
 function generateOtp() {
-  return Math.floor(100000 + Math.random() * 900000); // 6 digit
+  return Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
 }
 
-// Request OTP
 app.post("/send-otp", (req, res) => {
   const { phone } = req.body;
   if (!phone) return res.status(400).json({ error: "Phone number required" });
@@ -21,12 +58,11 @@ app.post("/send-otp", (req, res) => {
   const otp = generateOtp();
   otpStore[phone] = otp;
 
-  console.log(`📱 OTP for ${phone} is: ${otp}`); // shows in terminal
+  console.log(`📱 OTP for ${phone} is: ${otp}`);
 
   res.json({ success: true, message: "OTP sent successfully" });
 });
 
-// Verify OTP
 app.post("/verify-otp", (req, res) => {
   const { phone, otp } = req.body;
 

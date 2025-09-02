@@ -2,11 +2,10 @@
 
 import { createRouter, createRoute, createRootRoute, Outlet } from "@tanstack/react-router";
 import Layout from "../layout";
-import Home from "../components/Home";
 import ProductDetails from "../components/ProductDetails";
 import Cart from "../components/Cart";
 import Signin from "../components/Signin";
-import BecomeSeller from "../components/Seller";
+import Checkout from "../components/Checkout";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -36,14 +35,15 @@ const signinRoute = createRoute({
   component: Signin,
 });
 
-const becomeSellerRoute = createRoute({
+const checkoutRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/become-seller",
-  component: BecomeSeller,
+  path: "/checkout",
+  component: Checkout,
 });
 
+
 export const router = createRouter({
-  routeTree: rootRoute.addChildren([homeRoute, detailsRoute, cartRoute, signinRoute,becomeSellerRoute]),
+  routeTree: rootRoute.addChildren([homeRoute,checkoutRoute, detailsRoute, cartRoute, signinRoute,]),
 });
 
 declare module "@tanstack/react-router" {
