@@ -6,6 +6,7 @@ import ProductDetails from "../components/ProductDetails";
 import Cart from "../components/Cart";
 import Signin from "../components/Signin";
 import Checkout from "../components/Checkout";
+import Success from "../components/Success";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -40,10 +41,15 @@ const checkoutRoute = createRoute({
   path: "/checkout",
   component: Checkout,
 });
+ const successRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/success",
+  component: Success,
+});
 
 
 export const router = createRouter({
-  routeTree: rootRoute.addChildren([homeRoute,checkoutRoute, detailsRoute, cartRoute, signinRoute,]),
+  routeTree: rootRoute.addChildren([homeRoute,checkoutRoute, detailsRoute, cartRoute, signinRoute,successRoute]),
 });
 
 declare module "@tanstack/react-router" {

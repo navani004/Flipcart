@@ -1,5 +1,5 @@
 import { loadStripe } from "@stripe/stripe-js";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify"
 
 const stripePromise = loadStripe("pk_test_51S2UqnQrgf7Db4bXG3rCdootSUFHk2eTtgTkeN2T87mTVVO8QRZYfJnp6CuPJv7ApVIgG4oAxXm0y7MybJ7rMUIJ00xkw7XW6d");
 

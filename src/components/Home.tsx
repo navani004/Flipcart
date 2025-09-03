@@ -1,16 +1,12 @@
 
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import type { Product } from "../type/product";
+import type { Product } from "../type/product.types";
 import f from "../images/f.png";
 import Welcome from "./Welcome";
-
+import type { HomeProps } from "../type/home.types";
 const API = "https://fakestoreapi.com/products";
 
-interface HomeProps {
-  search: string;
-  menu: string;
-}
 
 const Home = ({ search, menu }: HomeProps) => {
   

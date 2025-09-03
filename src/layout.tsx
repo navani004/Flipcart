@@ -1,3 +1,4 @@
+
 import { Outlet, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
@@ -11,11 +12,15 @@ const Layout = () => {
   const routerState = useRouterState();
   const path = routerState.location.pathname;
 
-  const hideNavbar = path.startsWith("/signin");
+  // Hide Navbar only on signin
+  const hideNavbar = path.startsWith("/signin"); // ✅ keep navbar visible on success
+
+  // Hide MenuBar on signin, cart, details, success
   const hideMenuBar =
     path.startsWith("/signin") ||
     path.startsWith("/cart") ||
-    path.startsWith("/details");
+    path.startsWith("/details") ||
+    path.startsWith("/success"); // ✅ menu hidden on success
 
   return (
     <>

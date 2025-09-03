@@ -1,10 +1,23 @@
 import { useCart } from "../context/CartContext";
 import { startCheckout } from "./stripeCheckout";
-
+import { toast } from "react-toastify"
 
 const Cart = () => {
   const { cart, increaseQty, decreaseQty, getTotalPrice } = useCart();
+  const handleCheckout = () => {
+    const signedIn = localStorage.getItem("signedIn");
+    if (!signedIn) {
+      toast.error("Please sign in to proceed with payment");
+      return;
+    }
 
+    if (cart.length === 0) {
+      toast.error("Your cart is empty");
+      return;
+    }
+
+    startCheckout(cart);
+  };
   if (cart.length === 0)
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 px-6">
@@ -80,9 +93,9 @@ const Cart = () => {
           </div>
           <div className="border-t border-gray-200"></div>
 
-          <button
+           <button
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-transform hover:scale-105"
-            onClick={() => startCheckout(cart)}
+            onClick={handleCheckout}
           >
             Proceed to Checkout
           </button>

@@ -26,7 +26,7 @@ app.post("/create-checkout-session", async (req, res) => {
         product_data: {
           name: item.product.title,
         },
-        unit_amount: Math.round(item.product.price * 100), // convert ₹ to paise
+        unit_amount: Math.max(Math.round(item.product.price * 100), 5000), // convert ₹ to paise
       },
       quantity: item.quantity,
     }));
@@ -75,5 +75,5 @@ app.post("/verify-otp", (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("✅ Server running on http://localhost:5000");
+  console.log(" Server running on http://localhost:5000");
 });

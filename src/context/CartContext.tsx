@@ -1,7 +1,7 @@
 
 import { createContext, useContext, useState, type ReactNode } from "react"
-import type { Product } from "../type/product"
-import type { CartItem, CartContextType } from "../type/cart"
+import type { Product } from "../type/product.types"
+import type { CartItem, CartContextType } from"../type/cart.type"
 
 const CartContext = createContext<CartContextType | null>(null)
 
@@ -61,3 +61,5 @@ export const useCart = () => {
   if (!ctx) throw new Error("useCart must be used within CartProvider")
   return ctx
 }
+
+

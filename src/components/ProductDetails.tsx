@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import f from "../images/f.png";
 import { useCart } from "../context/CartContext";
 import { toast } from "react-toastify";
-import type { Product } from "../type/product";
+import type { Product } from "../type/product.types";
 
 const ProductDetails = () => {
   const navigate = useNavigate();

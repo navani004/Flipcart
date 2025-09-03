@@ -3,12 +3,7 @@ import women from "../images/women.jpg";
 import jewelry from "../images/jewelry.jpg";
 import electronic from "../images/electronic.jpg";
 import cloth from "../images/cloth.jpg";
-
-interface MenuBarProps {
-  menu: string;
-  setMenu: (value: string) => void;
-}
-
+import type { MenuBarProps } from "../type/menuBar.type";
 const categories = [
   { name: "Electronics", value: "electronics", image: electronic },
   { name: "Women", value: "women's clothing", image: women },

@@ -20,6 +20,7 @@
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "firebase": "^12.1.0",
+    "lucide-react": "^0.542.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-phone-input-2": "^2.15.1",

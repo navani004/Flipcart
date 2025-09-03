@@ -4,12 +4,7 @@ import cartIcon from "../images/cart.png";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useCart } from "../context/CartContext";
 import { useEffect, useState } from "react";
-
-interface NavbarProps {
-  search: string;
-  setSearch: (value: string) => void;
-  setMenu?: (value: string) => void;
-}
+import type { NavbarProps } from "../type/navbar.types";
 
 const Navbar = ({ search, setSearch, setMenu }: NavbarProps) => {
   const { cart } = useCart();
