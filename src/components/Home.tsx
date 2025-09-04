@@ -63,3 +63,4 @@ const Home = ({ search, menu }: HomeProps) => {
 };
 
 export default Home;
+
